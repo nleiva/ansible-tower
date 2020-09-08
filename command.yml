@@ -1,0 +1,15 @@
+---
+- name: Execute command
+  hosts: localhost
+  gather_facts: no
+  vars:
+    command: date
+
+  tasks:
+    - name: Execute command '{{ command }}'
+      command: "{{ command }}"
+      register: myoutput
+
+    - name: Display output
+      debug:
+        var: myoutput.stdout

@@ -1,0 +1,16 @@
+- name: Run Job Template
+  hosts: localhost
+  gather_facts: no
+  collections:
+    - awx.awx
+  vars:
+    - my_id: 60
+
+  tasks:
+    - name: Get ALL result pages!
+      tower_job_list:
+        query: {"job_template": "{{ my_id }}"}
+      register: matching_jobs
+
+    - debug:
+        var: matching_jobs
