@@ -3,12 +3,12 @@
   hosts: localhost
   gather_facts: no
   vars:
-    path: desktop.json
+    filepath1: desktop.json
 
   tasks:
     - name: Check the file exists
       stat:
-        path: "{{ path }}"
+        path: "{{ filepath1 }}"
       register: stat_result
 
     - debug:
@@ -16,7 +16,7 @@
 
     - name: Complain if the file doesn't exist
       fail:
-        msg: "We need file {{ path }}"
+        msg: "We need file {{ filepath1 }}"
       when:
         - not stat_result.stat.exists
 
